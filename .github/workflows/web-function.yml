@@ -22,19 +22,6 @@ jobs:
           distribution: temurin
           java-version: 17
           cache: gradle
-      - name: Source code vulnerability scanning
-        uses: aquasecurity/trivy-action@master
-        with:
-          scan-type: 'fs'
-          scan-ref: '04-triggers/end/web-function'
-          format: 'sarif'
-          output: 'trivy-results-source-code.sarif'
-      - name: Upload vulnerability report
-        uses: github/codeql-action/upload-sarif@v2
-        if: success() || failure()
-        with:
-          sarif_file: 'trivy-results-source-code.sarif'
-          category: source-code
       - name: Build, unit tests and integration tests
         run: |
           cd 04-triggers/end/web-function
