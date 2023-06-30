@@ -1,1 +1,1 @@
-# serverless-java-with-spring-boot
+# Serverless Java with Spring Boot

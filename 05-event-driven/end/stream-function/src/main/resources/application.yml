@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: stream-function
+  cloud:
+    function:
+      definition: uppercase|sentence
+    stream:
+      bindings:
+        uppercasesentence-in-0:
+          destination: instrument
+          group: ${spring.application.name}
+        uppercasesentence-out-0:
+          destination: skill
