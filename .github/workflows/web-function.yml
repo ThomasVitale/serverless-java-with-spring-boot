@@ -1,4 +1,4 @@
-name: Native Service
+name: Web Function
 on: push
 
 env:

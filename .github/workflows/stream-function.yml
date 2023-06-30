@@ -1,4 +1,4 @@
-name: Native Service
+name: Stream Function
 on: push
 
 env:
