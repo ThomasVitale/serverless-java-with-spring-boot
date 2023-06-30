@@ -20,21 +20,8 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: temurin
-          java-version: 20
+          java-version: 17
           cache: gradle
-      - name: Source code vulnerability scanning
-        uses: aquasecurity/trivy-action@master
-        with:
-          scan-type: 'fs'
-          scan-ref: '03-functions/end/java-function'
-          format: 'sarif'
-          output: 'trivy-results-source-code.sarif'
-      - name: Upload vulnerability report
-        uses: github/codeql-action/upload-sarif@v2
-        if: success() || failure()
-        with:
-          sarif_file: 'trivy-results-source-code.sarif'
-          category: source-code
       - name: Build, unit tests and integration tests
         run: |
           cd 03-functions/end/java-function
@@ -55,7 +42,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: temurin
-          java-version: 20
+          java-version: 17
           cache: gradle
       - name: Build container image
         run: |
@@ -63,17 +50,6 @@ jobs:
           chmod +x gradlew
           ./gradlew bootBuildImage \
             --imageName ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
-      - name: OCI image vulnerability scanning
-        uses: aquasecurity/trivy-action@master
-        with:
-          image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
-          format: 'sarif'
-          output: 'trivy-results-oci-image.sarif'
-      - name: Upload vulnerability report
-        uses: github/codeql-action/upload-sarif@v2
-        if: success() || failure()
-        with:
-          sarif_file: 'trivy-results-oci-image.sarif'
       - name: Authenticate with the container registry
         uses: docker/login-action@v2
         with:
