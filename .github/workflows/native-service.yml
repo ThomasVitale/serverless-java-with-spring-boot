@@ -26,7 +26,7 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: 'fs'
-          scan-ref: 'native-service'
+          scan-ref: '02-scale-to-zero/end/native-service'
           format: 'sarif'
           output: 'trivy-results-source-code.sarif'
       - name: Upload vulnerability report

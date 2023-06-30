@@ -26,7 +26,7 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: 'fs'
-          scan-ref: 'web-function'
+          scan-ref: '04-triggers/end/web-function'
           format: 'sarif'
           output: 'trivy-results-source-code.sarif'
       - name: Upload vulnerability report
