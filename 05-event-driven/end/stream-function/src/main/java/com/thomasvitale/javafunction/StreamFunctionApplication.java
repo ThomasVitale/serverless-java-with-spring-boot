@@ -10,12 +10,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class JavaFunctionApplication {
+public class StreamFunctionApplication {
 
-	private static final Logger log = LoggerFactory.getLogger(JavaFunctionApplication.class);
+	private static final Logger log = LoggerFactory.getLogger(StreamFunctionApplication.class);
 
 	public static void main(String[] args) {
-		SpringApplication.run(JavaFunctionApplication.class, args);
+		SpringApplication.run(StreamFunctionApplication.class, args);
 	}
 
 	@Bean

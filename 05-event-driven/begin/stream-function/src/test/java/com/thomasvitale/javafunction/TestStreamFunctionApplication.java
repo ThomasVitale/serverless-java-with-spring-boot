@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.testcontainers.containers.RabbitMQContainer;
 
 @TestConfiguration(proxyBeanMethods = false)
-public class TestJavaFunctionApplication {
+public class TestStreamFunctionApplication {
 
 	@Bean
 	@ServiceConnection
@@ -16,7 +16,7 @@ public class TestJavaFunctionApplication {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.from(JavaFunctionApplication::main).with(TestJavaFunctionApplication.class).run(args);
+		SpringApplication.from(StreamFunctionApplication::main).with(TestStreamFunctionApplication.class).run(args);
 	}
 
 }

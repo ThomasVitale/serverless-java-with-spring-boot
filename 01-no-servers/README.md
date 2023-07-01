@@ -1,12 +1,15 @@
 # No Servers
 
+When working with serverless architectures, we rely on a platform that takes care of all the infrastructure concerns and let developers focus on the business logic. The examples in this repository are based on a platform built on top of Kubernetes.
+
 ## Prerequisites
 
 Ensure you have the following tools installed in your local environment:
 
-* Kubernetes `kubectl`
-* Carvel `kctrl`
-* Carvel `kapp`.
+* [Podman Desktop](https://www.thomasvitale.com/podman-desktop-for-java-development) (or Docker)
+* Carvel [`kctrl`](https://carvel.dev/kapp-controller/docs/latest/install/#installing-kapp-controller-cli-kctrl)
+* Carvel [`kapp`](https://carvel.dev/kapp/docs/latest/install)
+* [kind](https://kind.sigs.k8s.io).
 
 Then, create a local Kubernetes cluster with `kind`.
 
@@ -42,7 +45,7 @@ Add the Kadras repository to make the platform packages available to the cluster
 
 ```shell script
 kctrl package repository add -r kadras-packages \
-  --url ghcr.io/kadras-io/kadras-packages \
+  --url ghcr.io/kadras-io/kadras-packages:0.12.0-RC3  \
   -n kadras-packages --create-namespace
 ```
 
@@ -65,7 +68,7 @@ Reference the `values.yml` file you created in the previous step and install the
 ```shell script
 kctrl package install -i engineering-platform \
   -p engineering-platform.packages.kadras.io \
-  -v 0.10.0 \
+  -v 0.10.0-RC3 \
   -n kadras-packages \
   --values-file values.yml
 ```
@@ -76,4 +79,12 @@ Verify that all the platform components have been installed and properly reconci
 
 ```shell script
 kctrl package installed list -n kadras-packages
+```
+
+# Cleanup
+
+When you're done working with the platform, you can delete the local cluster as follows.
+
+```shell script
+kind delete cluster --name kadras
 ```
