@@ -35,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+native-executable
+native-executable-final
